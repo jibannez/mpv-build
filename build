@@ -8,6 +8,10 @@ scripts/libplacebo-config
 scripts/libplacebo-build "$@"
 scripts/libass-config
 scripts/libass-build "$@"
+scripts/libdav1d-config
+scripts/libdav1d-build "$@"
+scripts/libsvtav1-config
+scripts/libsvtav1-build "$@"
 scripts/ffmpeg-config
 scripts/ffmpeg-build "$@"
 scripts/mpv-config

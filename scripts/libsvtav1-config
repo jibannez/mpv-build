@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+echo() { printf %s\\n "$*"; }  # depends on standard IFS (which we have)
+
+BUILD="$(pwd)"
+echo $BUILD
+newline="
+"
+
+if test -f "$BUILD"/libstav1_options ; then
+    IFS=$newline
+    set -- $(cat "$BUILD"/libstav1_options) "$@"
+    unset -v IFS
+fi
+
+mkdir -p libsvtav1/build
+cd libsvtav1/build
+
+if "$BUILD"/scripts/test-libmpv ; then
+    PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$BUILD/build_libs" -DCMAKE_BUILD_TYPE=Release -DBUILD_DEC=OFF -DBUILD_SHARED_LIBS=ON ..
+else
+    PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$BUILD/build_libs" -DCMAKE_BUILD_TYPE=Release -DBUILD_DEC=OFF -DBUILD_SHARED_LIBS=OFF ..
+fi

@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+cd libsvtav1/build
+echo $PWD
+PATH="$HOME/bin:$PATH" make
+make install

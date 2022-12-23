@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+echo() { printf %s\\n "$*"; }  # depends on standard IFS (which we have)
+
+BUILD="$(pwd)"
+echo $BUILD
+newline="
+"
+
+if test -f "$BUILD"/libdav1d_options ; then
+    IFS=$newline
+    set -- $(cat "$BUILD"/libdav1d_options) "$@"
+    unset -v IFS
+fi
+
+cd "$BUILD"/libdav1d
+
+if "$BUILD"/scripts/test-libmpv ; then
+    meson setup -Denable_tools=false -Denable_tests=false --default-library=shared .. --prefix "$BUILD/build_libs" --libdir="$BUILD/build_libs/lib"
+else
+    meson setup -Denable_tools=false -Denable_tests=false --default-library=static .. --prefix "$BUILD/build_libs" --libdir="$BUILD/build_libs/lib"
+fi

@@ -19,6 +19,8 @@ do_clone_all()
 {
     do_clone "ffmpeg"     "https://github.com/FFmpeg/FFmpeg.git"
     #do_clone "fribidi"    "http://anongit.freedesktop.org/git/fribidi/fribidi.git"
+    do_clone "libdav1d"   "https://code.videolan.org/videolan/dav1d.git"
+    do_clone "libsvtav1"   "https://gitlab.com/AOMediaCodec/SVT-AV1.git"
     do_clone "libass"     "https://github.com/libass/libass.git"
     do_clone "libplacebo" "https://github.com/haasn/libplacebo.git"
     do_clone "mpv"        "https://github.com/mpv-player/mpv.git"
